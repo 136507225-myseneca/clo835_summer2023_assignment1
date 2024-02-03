@@ -3,9 +3,8 @@ name: TFSec Scan
 on:
   push:
     branches:
-      - terraform-ec2
-      - staging
-      - prod
+      - main
+      - master
 
 jobs:
   tfsec:
