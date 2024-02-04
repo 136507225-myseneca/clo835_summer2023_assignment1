@@ -52,17 +52,17 @@ def home():
 
 
 @app.route("/app1", methods=['GET', 'POST'])
-def home():
+def home1():
     return render_template('addemp.html', color=color_codes[COLOR])
 
 
 @app.route("/app2", methods=['GET', 'POST'])
-def home():
+def home2():
     return render_template('addemp.html', color=color_codes[COLOR])
 
 
 @app.route("/app3", methods=['GET', 'POST'])
-def home():
+def home3():
     return render_template('addemp.html', color=color_codes[COLOR])
 
 
