@@ -1,32 +1,36 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: frontend
-  labels:
-    app.kubernetes.io/name: guestbook
-    app.kubernetes.io/component: frontend
+  name: web-app-deployment
 spec:
+  replicas: 3
   selector:
     matchLabels:
-      app.kubernetes.io/name: guestbook
-      app.kubernetes.io/component: frontend
-  replicas: 3
+      app: employees
   template:
     metadata:
       labels:
-        app.kubernetes.io/name: guestbook
-        app.kubernetes.io/component: frontend
+        app: employees
     spec:
       containers:
-      - name: guestbook
-        image: paulczar/gb-frontend:v5
-        # image: gcr.io/google-samples/gb-frontend:v4
+      - name: web-app
+        image: 113222697619.dkr.ecr.us-east-1.amazonaws.com/clo835-app:latest
         resources:
           requests:
             cpu: 100m
             memory: 100Mi
-        env:
-        - name: GET_HOSTS_FROM
-          value: dns
         ports:
-        - containerPort: 80
+        - containerPort: 8080
+        env:
+        - name: DBHOST
+          value: "172.17.0.2"
+        - name: DBPORT
+          value: "3306"
+        - name: DBUSER
+          value: "root"
+        - name: DATABASE
+          value: "employees"
+        - name: DBPWD
+          value: "pw"
+        - name: APP_COLOR
+          value: "blue"
